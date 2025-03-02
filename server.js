@@ -31,9 +31,6 @@ const errorHandler = (err, req, res, next) => {
 // Create a new movie
 app.post('/movies', async (req, res, next) => {
     try {
-        if (!req.body.title || !req.body.genre || !req.body.releaseYear) {
-            return res.status(400).json({ message: 'Title, genre, and releaseYear are required' });
-        }
         const movie = new Movie(req.body);
         await movie.save();
         res.status(201).json(movie);
